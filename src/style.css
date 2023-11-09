@@ -156,13 +156,18 @@ h3 {
     transition: transform .3s;
 }
 
-.nav-items {
+.nav-items,
+.project-items {
     cursor: pointer;
     padding: var(--spacing-xs);
 }
 
+.nav-items-active,
 .nav-items:hover,
-.nav-items:focus {
+.nav-items:focus,
+.project-items-active,
+.project-items:hover,
+.project-items:focus {
     background-color: var(--clr-primary-100);
     border-radius: var(--br-sm);
 }

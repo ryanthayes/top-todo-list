@@ -1,4 +1,5 @@
 import dom from "./dom";
 
 dom.renderTasks();
-// dom.renderProjects();
+dom.renderProjects();
+dom.setActive();

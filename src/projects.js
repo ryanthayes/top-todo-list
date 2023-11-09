@@ -1,6 +1,11 @@
 const projects = [
     {
-        title: 'Default'
+        title: 'Client Presentation',
+        type: 'Work'
+    },
+    {
+        title: 'Blind Date',
+        type: 'Personal'
     }
 ];
 
