@@ -4,11 +4,10 @@ import { createHtmlElement } from "./elements";
 
 const dom = (() => {
 
-
     const projectsContainer = document.querySelector('#projectsContainer');
     const toDoList = document.querySelector('#toDoList');
     
-    // Render Projects in sidebar
+    // RENDER PROJECTS IN SIDEBAR
     function renderProjects() {
         
         projectsContainer.innerText = '';
@@ -29,12 +28,10 @@ const dom = (() => {
             
                 const projectTitle = createHtmlElement('p', null, ['project-title'], null, null, project.title, projectItems);
             } 
-
-
         })
     };
     
-    // Render Tasks on main page
+    // RENDER TASKS ON MAIN PAGE
     function renderTasks() {
     
         toDoList.innerText = '';
@@ -45,50 +42,54 @@ const dom = (() => {
         toDoList.append(taskHeader);
 
         tasks.forEach((task, index) => {
-          
             
             const taskItems = createHtmlElement('li', null, ['task-item'], 'data-index', index, null, toDoList);
+
+            const taskTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, taskItems)
     
-            const taskTitle = createHtmlElement('h3', null, ['task-item__title'], 'data-action', 'check', task.title, taskItems);
+            const taskTitle = createHtmlElement('h3', null, ['task-item__title'], 'data-action', 'check', task.title, taskTitleContainer);
             
             // const taskDescription = createHtmlElement('p', null, ['task-item__description'], 'data-action', 'description', task.description, taskItems);
 
-            // const taskProject = createHtmlElement('p', null, ['task-item__project'], null, null, task.project, taskItems);
+            const taskElContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, taskItems);
 
-            const taskDate = createHtmlElement('p', null, ['task-item__date'], null, null, task.date, taskItems);
+            const taskDate = createHtmlElement('p', null, ['task-item__date'], null, null, task.date, taskElContainer);
 
-            const taskDetailsBtn = createHtmlElement('i', null, ['fa', 'fa-eye'], 'data-action', 'details', null, taskItems);
+            const taskPriority = createHtmlElement('p', null, ['task-item__priority'], null, null, task.priority, taskElContainer);
 
-            const taskPriority = createHtmlElement('p', null, ['task-item__priority'], null, null, task.priority, taskItems);
             
-            const taskBtnContainer = createHtmlElement('div', null, ['task-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, taskItems)
+            const taskBtnContainer = createHtmlElement('div', null, ['task-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, taskElContainer)
 
             const taskEditBtn = createHtmlElement('i', null, ['fas', 'fa-edit'], 'data-action', 'edit', null, taskBtnContainer);
 
             const taskDeleteBtn = createHtmlElement('i', null, ['fa-solid', 'fa-trash'], 'data-action', 'delete', null, taskBtnContainer);
+            taskDeleteBtn.addEventListener('click', () => {
+                deleteTask();
+            })
+
+            const taskDetailsBtn = createHtmlElement('i', null, ['fa', 'fa-info-circle'], 'data-action', 'details', null, taskBtnContainer);
    
             // CLICK EVENT LISTENER FOR ALL TASKS
             toDoList.addEventListener('click', (e) => {
                 const target = e.target;
                 const parentElement = target.parentNode;
 
-                if (parentElement.className !== 'task-item') { 
-                    return;
+                if (target.dataset.action === 'details') {
+
+
                 }
-
-                const task = parentElement;
-                const taskIndex = task.dataset.index;
-                const action = target.dataset.action;
-
-                // action === 'check' && toggleTask(taskIndex);
-                // action === 'details' && toggleDetails(taskIndex);
-                // action === 'edit' && editTask(taskIndex);
-                // action === 'delete' && deleteTask(taskIndex);
 
             })
     
         });
     };
+
+    const deleteTask = (index) => {
+        tasks.splice(index, 1);
+        // addToStorage();
+        console.log(tasks.tasksArray);
+        renderTasks();
+    }
 
     function setActive() {
         
@@ -111,34 +112,10 @@ const dom = (() => {
                 } 
                 if (target.id === 'navImportant') {
                     navImportant.classList.add('nav-items-active');
-                } 
-                
+                }      
             })
-    
         });
     };
-
-        // // TOGGLE ON/OFF COMPLETED TASK
-        // function toggleTask(taskIndex) {
-        //     tasks = tasks.map((task, index) => {
-        //         return {
-        //             ...task,
-        //             checked: index === taskIndex ? !task.checked : task.checked
-        //         }
-        //     })
-    
-        //     renderTasks();
-        // };
-
-        // TOGGLE TASK DETAILS
-        // function toggleDetails(taskIndex) {
-        //     if ()
-        // }
-
-        // EDIT TASK
-        // function editTask(taskIndex) {
-        //     taskTitle.value = tasks[taskIndex].value;
-        // }
 
     return {
         renderTasks,

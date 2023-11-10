@@ -193,23 +193,24 @@ h3 {
 
 /* === TASK MODAL === */
 
-.task-modal {
+.tasks-modal {
     overflow: hidden;
     margin: 0 auto;
     width: 600px;
+    z-index: 999;
     background-color: var(--clr-neutral-100);
     border: 0;
     border-radius: var(--br-md);
     box-shadow: var(--shadow);
 }
 
-.task-modal__header { 
+.tasks-modal__header { 
     padding: var(--spacing-md);
     color: var(--clr-primary-100);
     background-image: linear-gradient(45deg, var(--clr-primary-900), var(--clr-primary-700));
 }
 
-.task-form {
+.tasks-form {
     padding: var(--spacing-md);
 }
 
@@ -241,6 +242,7 @@ h3 {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
+    justify-content: space-between;
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-md);
     color: var(--clr-neutral-700);
@@ -264,14 +266,16 @@ h3 {
     transform: scale(1.05);
 }
 
-.btn-add {
+.btn-add-task {
     cursor: pointer;
+    background: none;
+    border: 0;
     fill: var(--clr-primary-100);
     transition: .05s ease;
 }
 
-.btn-add:hover,
-.btn-add:focus {
+.btn-add-task:hover,
+.btn-add-task:focus {
     transform: scale(1.15);
 }
 
