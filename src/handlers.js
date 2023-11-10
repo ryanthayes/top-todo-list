@@ -1,19 +1,28 @@
+import tasks from "./tasks";
+
 const handlers = (() => {
 
     function listenForClicks() {
 
-        // LISTENER TO OPEN ADD TASK MODAL
-        const btnAddTask = document.querySelector('#btnAddTask');
+        // EVENT: Open New Task Modal
+        const openTaskModal = document.querySelector('#openTaskModal');
+        const closeTaskModal = document.querySelector('#closeTaskModal');
         const tasksModal = document.querySelector('#tasksModal');
         
-        btnAddTask.addEventListener('click', () => {
-            console.log('Clicked');
-            
+        openTaskModal.addEventListener('click', () => {
             tasksModal.showModal();
         })
+
+        closeTaskModal.addEventListener('click', () => {
+            tasksModal.close();
+        })
+
+        // EVENT: On form submit, create task
+        const newTaskForm = document.querySelector('#newTaskForm');
+        newTaskForm.addEventListener('submit', tasks.newTask);
     };
 
-    return listenForClicks;
+    return { listenForClicks };
 })();
 
 export default handlers;

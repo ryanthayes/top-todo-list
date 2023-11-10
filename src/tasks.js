@@ -1,6 +1,8 @@
+import dom from "./dom";
+
 const tasks =(() => {
 
-    const tasksArray = [
+    let tasksArray = [
         {
             title: 'Display Array',
             description: 'Display array of tasks on DOM',
@@ -32,26 +34,31 @@ const tasks =(() => {
     };
     
     function newTask() {
-    
+  
         // Get form input values
         const title = document.querySelector('#taskTitle').value;
         const description = document.querySelector('#taskDescription').value;
         const date = document.querySelector('#taskDate').value;
         const priority = document.querySelector('#taskPriority').value;
-        const project = document.querySelector('#taskProject').value;
     
-        const task = new Task(title, description, date, priority, project);
+        const task = new Task(title, description, date, priority);
     
         // Add task to array
-        tasksArray.push(task)
+        tasksArray.push(task);
+
+        console.log(tasksArray);
     
         // Add task to local storage
         addToStorage();
-    
-        console.log(tasksArray);
+
+        //Render to DOM
+        dom.renderTasks();
     };
 
-    return tasksArray;
+    return { 
+        tasksArray,
+        newTask
+    };
 
 })();
 

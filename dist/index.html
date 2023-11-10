@@ -24,7 +24,7 @@
     <header class="header">
         <div class="container | flex justify-content-between align-items-center">
             <h1 class="title">Honeydew List</h1>
-            <button class="btn-add-task" id="btnAddTask">
+            <button class="btn-add-task" id="openTaskModal">
                 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24"><path fill="" d="M11 13v3q0 .425.288.713T12 17q.425 0 .713-.288T13 16v-3h3q.425 0 .713-.288T17 12q0-.425-.288-.713T16 11h-3V8q0-.425-.288-.713T12 7q-.425 0-.713.288T11 8v3H8q-.425 0-.713.288T7 12q0 .425.288.713T8 13h3Zm1 9q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Z"/></svg>
             </button>
         </div>
@@ -76,7 +76,7 @@
             <div class="tasks-modal__header">
                 <h2 class="title--sm">Add Task</h2>
             </div>
-            <form action="" class="tasks-form | flex flex-columns gap-md" id="taskForm">
+            <form action="" class="tasks-form | flex flex-columns gap-md" id="newTaskForm">
                 <div class="form-input-group | flex flex-columns gap-sm">
                     <label for="task-title" class="form-label">Task</label>
                     <input type="text" class="form-input" name="task-title" id="taskTitle">
@@ -97,14 +97,15 @@
                         <option value="low">Low</option>
                     </select>          
                 </div>
-                <div class="form-input-group | flex flex-columns gap-sm">
+                <!-- <div class="form-input-group | flex flex-columns gap-sm">
                     <label for="task-project" class="form-label">Project</label>
                     <select class="form-input" name="task-project" id="taskProject">
                         <option value="default">Default</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="btn-container">
                     <button type="submit" class="btn" id="taskSubmitBtn">Add</button>
+                    <button class="btn btn--naked" id="closeTaskModal">Cancel</button>
                 </div>
             </form>
            

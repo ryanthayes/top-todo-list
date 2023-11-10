@@ -41,7 +41,7 @@ const dom = (() => {
         taskHeader.innerText = 'All Tasks';
         toDoList.append(taskHeader);
 
-        tasks.forEach((task, index) => {
+        tasks.tasksArray.forEach((task, index) => {
             
             const taskItems = createHtmlElement('li', null, ['task-item'], 'data-index', index, null, toDoList);
 
@@ -57,7 +57,6 @@ const dom = (() => {
 
             const taskPriority = createHtmlElement('p', null, ['task-item__priority'], null, null, task.priority, taskElContainer);
 
-            
             const taskBtnContainer = createHtmlElement('div', null, ['task-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, taskElContainer)
 
             const taskEditBtn = createHtmlElement('i', null, ['fas', 'fa-edit'], 'data-action', 'edit', null, taskBtnContainer);
@@ -76,7 +75,6 @@ const dom = (() => {
 
                 if (target.dataset.action === 'details') {
 
-
                 }
 
             })
@@ -85,9 +83,8 @@ const dom = (() => {
     };
 
     const deleteTask = (index) => {
-        tasks.splice(index, 1);
+        tasks.tasksArray.splice(index, 1);
         // addToStorage();
-        console.log(tasks.tasksArray);
         renderTasks();
     }
 
