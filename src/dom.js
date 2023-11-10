@@ -82,12 +82,14 @@ const dom = (() => {
         });
     };
 
+    // DELETE TASKS FROM ARRAY
     const deleteTask = (index) => {
         tasks.tasksArray.splice(index, 1);
         // addToStorage();
         renderTasks();
     }
 
+    // SET ACTIVE STATE ON SIDEBAR NAV ITEMS
     function setActive() {
         
         const allNavItems = document.querySelectorAll('.nav-items');  

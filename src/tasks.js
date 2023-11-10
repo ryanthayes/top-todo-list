@@ -33,6 +33,8 @@ const tasks =(() => {
         localStorage.setItem("task", JSON.stringify(tasksArray));
     };
     
+
+    // ADD new tasks to todo list
     function newTask() {
   
         // Get form input values
@@ -40,7 +42,8 @@ const tasks =(() => {
         const description = document.querySelector('#taskDescription').value;
         const date = document.querySelector('#taskDate').value;
         const priority = document.querySelector('#taskPriority').value;
-    
+        
+        // Pass values to constructor
         const task = new Task(title, description, date, priority);
     
         // Add task to array
@@ -51,7 +54,7 @@ const tasks =(() => {
         // Add task to local storage
         addToStorage();
 
-        //Render to DOM
+        //Render tasks to DOM
         dom.renderTasks();
     };
 
