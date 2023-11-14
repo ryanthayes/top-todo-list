@@ -8,4 +8,4 @@ export const createHtmlElement = (type, id, classArray, attKey, attVal, content,
     if (parent) parent.append(element);
     
     return element;
-  }
+  };

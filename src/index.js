@@ -2,10 +2,11 @@ import dom from "./dom";
 import handlers from "./handlers";
 
 // ON PAGE LOAD - SHOW ALL TASKS
-dom.renderTasks();
+// dom.renderTasks();
 
 // ON PAGE LOAD - SHOW ALL PROJECTS
-dom.renderProjects();
+dom.renderProjSidebar();
+dom.renderToDos();
 
 // SHOW ACTIVE PAGE IN SIDEBAR
 dom.setActive();

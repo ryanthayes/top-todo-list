@@ -1,36 +1,48 @@
 import dom from "./dom";
+import projects from "./projects";
 
 const tasks =(() => {
 
-    let tasksArray = [
-        {
-            title: 'Display Array',
-            description: 'Display array of tasks on DOM',
-            date: '2023-11-08',
-            priority: 'High',
-            project: 'default'
-        },
-        {
-            title: 'Display Local Storage',
-            description: 'Display local storage of tasks on DOM',
-            date: '2023-11-08',
-            priority: 'High',
-            project: 'default'
-        }
-    ];
+    let tasksArray = [];
+
+    if (localStorage.getItem('task') === null) {
+        tasksArray = [
+            {
+                title: 'Project Proposal',
+                description: 'Prepare project proposal for client',
+                date: '2023-11-15',
+                priority: 'Medium',
+                projectIndex: 0,
+                taskIndex: 0,
+                completed: false
+            },
+            {
+                title: 'Presentation Draft',
+                description: 'Create draft of client presentation to present new marketing campaign proposal',
+                date: '2023-11-21',
+                priority: 'High',
+                projectIndex: 0,
+                taskIndex: 0,
+                completed: false
+            }
+        ]
+    } else {
+        const tasksFromStorage = JSON.parse(localStorage.getItem('task'));
+        tasksArray = tasksFromStorage;
+    };
     
     class Task {
-        constructor(title, description, date, priority, project) {
+        constructor(title, description, date, priority) {
             this.title = title;
             this.description = description;
             this.date = date;
             this.priority = priority;
-            this.project = project;
+            this.complete = false;
         }
     };
     
     function addToStorage() { 
-        localStorage.setItem("task", JSON.stringify(tasksArray));
+        localStorage.setItem('projects', JSON.stringify(projects.projectsArray));
     };
     
 
@@ -47,9 +59,9 @@ const tasks =(() => {
         const task = new Task(title, description, date, priority);
     
         // Add task to array
-        tasksArray.push(task);
+        projects.projectsArray[projectIndex].push(task);
 
-        console.log(tasksArray);
+        console.log(projects.projectsArray);
     
         // Add task to local storage
         addToStorage();
@@ -58,9 +70,17 @@ const tasks =(() => {
         dom.renderTasks();
     };
 
+    // DELETE TASKS FROM ARRAY
+    function deleteTask(index) {
+        tasks.tasksArray.splice(index, 1);
+        // addToStorage();
+        dom.renderTasks();
+    }
+
     return { 
         tasksArray,
-        newTask
+        newTask, 
+        deleteTask
     };
 
 })();

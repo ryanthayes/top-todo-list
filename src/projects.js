@@ -1,20 +1,45 @@
+import dom from "./dom";
+
 const projects = (() => {
 
-    const projectsArray = [
-        {
-            title: 'Client Presentation',
-            type: 'Work'
-        },
-        {
-            title: 'Blind Date',
-            type: 'Personal'
-        }
-    ];
+    let projectsArray = [];
+
+    // GET PROJECTS FROM LOCAL STORAGE
+    if (localStorage.getItem('projects') === null) {
+        projectsArray = [
+            {
+                title: 'Client Presentation',
+                tasks: [
+                    {
+                        title: 'Project Proposal',
+                        description: 'Prepare project proposal for client',
+                        date: '2023-11-15',
+                        priority: 'Medium',
+                        projectIndex: 0,
+                        taskIndex: 0,
+                        completed: false
+                    },
+                    {
+                        title: 'Presentation Draft',
+                        description: 'Create draft of client presentation to present new marketing campaign proposal',
+                        date: '2023-11-21',
+                        priority: 'High',
+                        projectIndex: 0,
+                        taskIndex: 1,
+                        completed: false
+                    }
+                ]
+            },
+        ];
+    } else {
+        const projectsFromStorage = JSON.parse(localStorage.getItem('projects'));
+        projectsArray = projectsFromStorage;
+    }
     
     class Project {
-        constructor(title, type) {
+        constructor(title) {
             this.title = title;
-            this.type = type;
+            this.tasks = [];
         }
     };
     
@@ -23,22 +48,34 @@ const projects = (() => {
     };
     
     function newProject() {
-    
+      
         // Get form input values
         const title = document.querySelector('#projectTitle').value;
-        const type = document.querySelector('#projectType').value;
+
+        const project = new Project(title);
     
-        const project = new Project(title, type);
-    
-        // Add task to array
-        projectsArray.push(project)
-    
-        // Add task to local storage
+        // Add project to array
+        projectsArray.push(project);
+
+        // Add project to local storage
         addToStorage();
-    
+
+        //Render Projects to DOM
+        dom.renderProjSidebar();
     };
 
-    return projectsArray;
+    // DELETE PROJECTS FROM ARRAY
+    function deleteProject(index) {
+        projectsArray.splice(index, 1);
+        // addToStorage();
+        dom.renderProjects();
+    }
+
+    return {
+        projectsArray,
+        newProject, 
+        deleteProject
+    };
 
 })();
 

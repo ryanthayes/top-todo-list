@@ -4,113 +4,138 @@ import { createHtmlElement } from "./elements";
 
 const dom = (() => {
 
-    const projectsContainer = document.querySelector('#projectsContainer');
+    const headerProjects = document.querySelector('#headerProjects');
     const toDoList = document.querySelector('#toDoList');
     
-    // RENDER PROJECTS IN SIDEBAR
-    function renderProjects() {
+    function clearTodoList() {
+        toDoList.innerText = '';
+    }
+
+    // RENDER PROJECTS TITLES IN HEADER
+    function renderProjSidebar() {
         
-        projectsContainer.innerText = '';
+        headerProjects.innerText = '';
 
-        projects.forEach((project, index) => {
+        projects.projectsArray.forEach((project, index) => {
 
-            if (project.type === 'Work') {
-                const projectItems = createHtmlElement('li', null, ['project-items', '|', 'no-bullets', 'flex', 'gap-sm', 'align-items-center'], 'data-index', index, null, projectsContainer);
+            // Create list item for each project
+            const projectItems = createHtmlElement('li', null, ['header-project-items', '|', 'no-bullets', 'flex', 'gap-sm', 'align-items-center'], 'data-index', index, null, headerProjects);
 
-                const projectType = createHtmlElement('i', null, ['fa-solid', 'fa-briefcase'], null, null, null, projectItems);
-            
-                const projectTitle = createHtmlElement('p', null, ['project-title'], null, null, project.title, projectItems);
-            }
-            if (project.type === 'Personal') {
-                const projectItems = createHtmlElement('li', null, ['project-items', '|', 'no-bullets', 'flex', 'gap-sm', 'align-items-center'], 'data-index', index, null, projectsContainer);
+            const projectTitle = createHtmlElement('p', null, ['header-project-title'], null, null, project.title, projectItems);
 
-                const projectType = createHtmlElement('i', null, ['fa-solid', 'fa-martini-glass'], null, null, null, projectItems);
-            
-                const projectTitle = createHtmlElement('p', null, ['project-title'], null, null, project.title, projectItems);
-            } 
+            projectItems.addEventListener('click', () => {
+                renderToDos();
+            })
+
+        });
+    };   
+    
+    function renderToDos() {
+
+        clearTodoList();
+
+        const todoHeader = document.querySelector('#todoHeader');
+
+        // const todoHeaderTitle = createHtmlElement('h2', null, ['todo-header__title', '|', 'title--sm', 'flex', 'justify-content-between'], null, null, project.title, todoHeader);
+
+        const projBtnContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoHeader);
+
+        // Create edit icon
+        const projEditBtn = createHtmlElement('i', null, ['fas', 'fa-edit'], 'data-action', 'edit', null, projBtnContainer);
+
+        // Create delete icon
+        const projDeleteBtn = createHtmlElement('i', null, ['fa-solid', 'fa-trash'], 'data-action', 'delete', null, projBtnContainer);
+
+        projDeleteBtn.addEventListener('click', () => {
+            projects.deleteProject();
         })
+
+        projects.projectsArray.tasks.forEach((tasks) => {
+            const todoItems = createHtmlElement('li', null, ['todo-item'], 'data-index', index, null, toDoList);
+            
+            const todoTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems)
+
+            const todoTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', tasks.title, todoTitleContainer);
+
+            const todoInfoContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems);
+
+            const todoDate = createHtmlElement('p', null, ['todo-item__date'], null, null, tasks.date, todoInfoContainer);
+
+            const todoPriority = createHtmlElement('p', null, ['todo-item__priority'], null, null, tasks.priority, todoInfoContainer);
+
+            const todoBtnContainer = createHtmlElement('div', null, ['task-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, todoInfoContainer)
+
+            const todoEditBtn = createHtmlElement('i', null, ['fas', 'fa-edit'], 'data-action', 'edit', null, todoBtnContainer);
+
+            const todoDeleteBtn = createHtmlElement('i', null, ['fa-solid', 'fa-trash'], 'data-action', 'delete', null, todoBtnContainer);
+            todoDeleteBtn.addEventListener('click', () => {
+                deleteTask();
+            })
+
+            const todoDetailsBtn = createHtmlElement('i', null, ['fa', 'fa-info-circle'], 'data-action', 'details', null, todoBtnContainer);
+        });
+    };
+    
+    function clearTodoList() {
+        toDoList.innerText = '';
     };
     
     // RENDER TASKS ON MAIN PAGE
     function renderTasks() {
     
-        toDoList.innerText = '';
-
-        const taskHeader = document.createElement('h2');
-        taskHeader.classList.add('title--sm', 'task-list__header');
-        taskHeader.innerText = 'All Tasks';
-        toDoList.append(taskHeader);
-
+        clearTodoList();
+        
         tasks.tasksArray.forEach((task, index) => {
             
-            const taskItems = createHtmlElement('li', null, ['task-item'], 'data-index', index, null, toDoList);
+            const todoItems = createHtmlElement('li', null, ['todo-item'], 'data-index', index, null, toDoList);
 
-            const taskTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, taskItems)
+            const todoTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems)
     
-            const taskTitle = createHtmlElement('h3', null, ['task-item__title'], 'data-action', 'check', task.title, taskTitleContainer);
+            const taskTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', task.title, todoTitleContainer);
             
             // const taskDescription = createHtmlElement('p', null, ['task-item__description'], 'data-action', 'description', task.description, taskItems);
 
-            const taskElContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, taskItems);
+            const todoInfoContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems);
 
-            const taskDate = createHtmlElement('p', null, ['task-item__date'], null, null, task.date, taskElContainer);
+            const todoDate = createHtmlElement('p', null, ['todo-item__date'], null, null, task.date, todoInfoContainer);
 
-            const taskPriority = createHtmlElement('p', null, ['task-item__priority'], null, null, task.priority, taskElContainer);
+            const todoPriority = createHtmlElement('p', null, ['todo-item__priority'], null, null, task.priority, todoInfoContainer);
 
-            const taskBtnContainer = createHtmlElement('div', null, ['task-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, taskElContainer)
+            const todoBtnContainer = createHtmlElement('div', null, ['task-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, todoInfoContainer)
 
-            const taskEditBtn = createHtmlElement('i', null, ['fas', 'fa-edit'], 'data-action', 'edit', null, taskBtnContainer);
+            const todoEditBtn = createHtmlElement('i', null, ['fas', 'fa-edit'], 'data-action', 'edit', null, todoBtnContainer);
 
-            const taskDeleteBtn = createHtmlElement('i', null, ['fa-solid', 'fa-trash'], 'data-action', 'delete', null, taskBtnContainer);
-            taskDeleteBtn.addEventListener('click', () => {
+            const todoDeleteBtn = createHtmlElement('i', null, ['fa-solid', 'fa-trash'], 'data-action', 'delete', null, todoBtnContainer);
+            todoDeleteBtn.addEventListener('click', () => {
                 deleteTask();
             })
 
-            const taskDetailsBtn = createHtmlElement('i', null, ['fa', 'fa-info-circle'], 'data-action', 'details', null, taskBtnContainer);
-   
-            // CLICK EVENT LISTENER FOR ALL TASKS
-            toDoList.addEventListener('click', (e) => {
-                const target = e.target;
-                const parentElement = target.parentNode;
-
-                if (target.dataset.action === 'details') {
-
-                }
-
-            })
-    
+            const todoDetailsBtn = createHtmlElement('i', null, ['fa', 'fa-info-circle'], 'data-action', 'details', null, todoBtnContainer);
         });
     };
-
-    // DELETE TASKS FROM ARRAY
-    const deleteTask = (index) => {
-        tasks.tasksArray.splice(index, 1);
-        // addToStorage();
-        renderTasks();
-    }
 
     // SET ACTIVE STATE ON SIDEBAR NAV ITEMS
     function setActive() {
         
-        const allNavItems = document.querySelectorAll('.nav-items');  
+        const allNavItems = document.querySelectorAll('.header-nav-items');  
         const allProjectItems = document.querySelectorAll('.project-items'); 
 
         allNavItems.forEach((item) => {
             addEventListener('click', (e) => {
                 const target = e.target;
 
-                item.classList.remove('nav-items-active');
+                item.classList.remove('header-nav-items-active');
                 if (target.id === 'navInbox') {
-                    navInbox.classList.add('nav-items-active');
+                    navInbox.classList.add('header-nav-items-active');
                 }
                 if (target.id === 'navToday') {
-                    navToday.classList.add('nav-items-active');
+                    navToday.classList.add('header-nav-items-active');
                 } 
                 if (target.id === 'navWeek') {
-                    navWeek.classList.add('nav-items-active');
+                    navWeek.classList.add('header-nav-items-active');
                 } 
                 if (target.id === 'navImportant') {
-                    navImportant.classList.add('nav-items-active');
+                    navImportant.classList.add('header-nav-items-active');
                 }      
             })
         });
@@ -118,7 +143,8 @@ const dom = (() => {
 
     return {
         renderTasks,
-        renderProjects,
+        renderToDos,
+        renderProjSidebar,
         setActive
     }
 
