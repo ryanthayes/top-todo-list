@@ -1,5 +1,5 @@
 import projects from "./projects";
-import tasks from "./tasks";
+import todos from "./todos";
 
 const handlers = (() => {
 
@@ -16,7 +16,7 @@ const handlers = (() => {
             projectModal.showModal();
         });
 
-        // EVENT: On form submit, create task
+        // EVENT: On form submit, create todo
         addProjectBtn.addEventListener('click', (e) =>{
             (e).preventDefault();
             projects.newProject();
@@ -25,25 +25,25 @@ const handlers = (() => {
 
         });
 
-        // // EVENT: Open New Task Modal
-        // const openTaskModal = document.querySelector('#openTaskModal');
-        // const closeTaskModal = document.querySelector('#closeTaskModal');
-        // const tasksModal = document.querySelector('#tasksModal');
+        // // EVENT: Open New todo Modal
+        // const openTodoModal = document.querySelector('#openTodoModal');
+        // const closeTodoModal = document.querySelector('#closeTodoModal');
+        // const todosModal = document.querySelector('#todosModal');
         
-        // openTaskModal.addEventListener('click', () => {
-        //     tasksModal.showModal();
+        // openTodoModal.addEventListener('click', () => {
+        //     todosModal.showModal();
         // })
 
-        // closeTaskModal.addEventListener('click', () => {
-        //     tasksModal.close();
+        // closeTodoModal.addEventListener('click', () => {
+        //     todosModal.close();
         // })
 
-        // // EVENT: On form submit, create task
-        // const newTaskForm = document.querySelector('#newTaskForm');
-        // newTaskForm.addEventListener('submit', (e) =>{
+        // // EVENT: On form submit, create todo
+        // const newTodoForm = document.querySelector('#newTodoForm');
+        // newTodoForm.addEventListener('submit', (e) =>{
         //     (e).preventDefault();
 
-        //     tasks.newTask();
+        //     todos.newTodo();
         // });
     };
 

@@ -9,14 +9,14 @@ const projects = (() => {
         projectsArray = [
             {
                 title: 'Client Presentation',
-                tasks: [
+                todos: [
                     {
                         title: 'Project Proposal',
                         description: 'Prepare project proposal for client',
                         date: '2023-11-15',
                         priority: 'Medium',
                         projectIndex: 0,
-                        taskIndex: 0,
+                        todoIndex: 0,
                         completed: false
                     },
                     {
@@ -25,11 +25,34 @@ const projects = (() => {
                         date: '2023-11-21',
                         priority: 'High',
                         projectIndex: 0,
-                        taskIndex: 1,
+                        todoIndex: 1,
                         completed: false
                     }
                 ]
             },
+            {
+                title: 'Shareholders Meeting',
+                todos: [
+                    {
+                        title: 'Quarterly Reports',
+                        description: 'Prepare quarterly reports for stakeholders',
+                        date: '2023-11-18',
+                        priority: 'Medium',
+                        projectIndex: 1,
+                        todoIndex: 0,
+                        completed: false
+                    },
+                    {
+                        title: 'Projected Future Earnings',
+                        description: 'Presentation of projected revenues and earnings for upcoming quarter.',
+                        date: '2023-11-22',
+                        priority: 'Low',
+                        projectIndex: 1,
+                        todoIndex: 1,
+                        completed: false
+                    }
+                ]
+            }
         ];
     } else {
         const projectsFromStorage = JSON.parse(localStorage.getItem('projects'));
@@ -39,7 +62,7 @@ const projects = (() => {
     class Project {
         constructor(title) {
             this.title = title;
-            this.tasks = [];
+            this.todos = [];
         }
     };
     
@@ -61,7 +84,7 @@ const projects = (() => {
         addToStorage();
 
         //Render Projects to DOM
-        dom.renderProjSidebar();
+        dom.renderProjects();
     };
 
     // DELETE PROJECTS FROM ARRAY
@@ -70,6 +93,12 @@ const projects = (() => {
         // addToStorage();
         dom.renderProjects();
     }
+
+    function activeProject(){
+        let activeProjectArray = projectsArray.filter(project => project.active);
+        return activeProjectArray[0];
+    }
+    
 
     return {
         projectsArray,

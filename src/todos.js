@@ -1,19 +1,19 @@
 import dom from "./dom";
 import projects from "./projects";
 
-const tasks =(() => {
+const todos =(() => {
 
-    let tasksArray = [];
+    let todosArray = [];
 
-    if (localStorage.getItem('task') === null) {
-        tasksArray = [
+    if (localStorage.getItem('todo') === null) {
+        todosArray = [
             {
                 title: 'Project Proposal',
                 description: 'Prepare project proposal for client',
                 date: '2023-11-15',
                 priority: 'Medium',
                 projectIndex: 0,
-                taskIndex: 0,
+                todoIndex: 0,
                 completed: false
             },
             {
@@ -22,16 +22,16 @@ const tasks =(() => {
                 date: '2023-11-21',
                 priority: 'High',
                 projectIndex: 0,
-                taskIndex: 0,
+                todoIndex: 0,
                 completed: false
             }
         ]
     } else {
-        const tasksFromStorage = JSON.parse(localStorage.getItem('task'));
-        tasksArray = tasksFromStorage;
+        const todosFromStorage = JSON.parse(localStorage.getItem('todo'));
+        todosArray = todosFromStorage;
     };
     
-    class Task {
+    class Todo {
         constructor(title, description, date, priority) {
             this.title = title;
             this.description = description;
@@ -45,44 +45,43 @@ const tasks =(() => {
         localStorage.setItem('projects', JSON.stringify(projects.projectsArray));
     };
     
-
-    // ADD new tasks to todo list
-    function newTask() {
+    // ADD new todos to todo list
+    function newTodo() {
   
         // Get form input values
-        const title = document.querySelector('#taskTitle').value;
-        const description = document.querySelector('#taskDescription').value;
-        const date = document.querySelector('#taskDate').value;
-        const priority = document.querySelector('#taskPriority').value;
+        const title = document.querySelector('#todoTitle').value;
+        const description = document.querySelector('#todoDescription').value;
+        const date = document.querySelector('#todoDate').value;
+        const priority = document.querySelector('#todoPriority').value;
         
         // Pass values to constructor
-        const task = new Task(title, description, date, priority);
+        const todo = new Todo(title, description, date, priority);
     
-        // Add task to array
-        projects.projectsArray[projectIndex].push(task);
+        // Add todo to array
+        projects.projectsArray[projectIndex].push(todo);
 
         console.log(projects.projectsArray);
     
-        // Add task to local storage
+        // Add todo to local storage
         addToStorage();
 
-        //Render tasks to DOM
-        dom.renderTasks();
+        //Render todos to DOM
+        dom.renderTodos();
     };
 
-    // DELETE TASKS FROM ARRAY
-    function deleteTask(index) {
-        tasks.tasksArray.splice(index, 1);
+    // DELETE TODOS FROM ARRAY
+    function deleteTodo(index) {
+        todos.todosArray.splice(index, 1);
         // addToStorage();
-        dom.renderTasks();
+        dom.renderTodos();
     }
 
     return { 
-        tasksArray,
-        newTask, 
-        deleteTask
+        todosArray,
+        newTodo, 
+        deleteTodo
     };
 
 })();
 
-export default tasks;
+export default todos;

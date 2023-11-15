@@ -74,47 +74,78 @@
                     <!--Javascript Content-->
                 </h2>
             </div>
-            <form action="" class="project-form | flex flex-columns gap-md" id="addProjectForm">
+            <form id="addProjectForm" class="project-form | flex flex-columns gap-md">
                 <div class="form-input-group | flex flex-columns gap-sm">
                     <label for="project-title" class="form-label">Project Name*</label>
-                    <input type="text" class="form-input" name="project-title" id="projectTitle" placeholder="e.g. Costa Rica Trip">
+                    <input 
+                        type="text" 
+                        id="projectTitle" 
+                        class="form-input" 
+                        name="project-title" 
+                        placeholder="e.g. Costa Rica Trip">
                 </div>
 
-                <div class="project-icons">
-                    <input type="radio" name="project-general" value="fa-list-check" id="projectGeneral">
+                <div class="project-types">
+                   
                     <label class="radio-label" for="project-general">
+                        <input
+                            type="radio"
+                            id="projectGeneral"
+                            name="project-general" 
+                            value="fa-list-check" />
                         <i class="fa-solid fa-list-check"></i>
                     </label>
 
-                    <input type="radio" name="project-work" value="fa-laptop" id="projectWork">
                     <label class="radio-label" for="project-work">
+                        <input 
+                            type="radio"
+                            id="projectWork"
+                            name="project-work"
+                            value="fa-laptop" >
                         <i class="fa-solid fa-laptop"></i>
                     </label>
 
-                    <input type="radio" name="project-school" value="fa-graduation-cap" id="projectSchool">
-                    <label class="radio-label" for="project-school">
+                    <label class="radio-label" for="project-home">
+                        <input 
+                            type="radio"
+                            id="projectSchool"
+                            name="project-school"
+                            value="fa-graduation-cap" >
                         <i class="fa-solid fa-graduation-cap"></i>
                     </label>
 
-                    <input type="radio" name="project-home" value="fa-screwdriver-wrench" id="projectHome">
                     <label class="radio-label" for="project-home">
+                        <input 
+                            type="radio"
+                            id="projectHome"
+                            name="project-home"
+                            value="fa-screwdriver-wrench" >
                         <i class="fa-solid fa-screwdriver-wrench"></i>
+                        
                     </label>
 
-                    <input type="radio" name="project-vacation" value="fa-umbrella-beach" id="projectVacation">
                     <label class="radio-label" for="project-vacation">
+                        <input 
+                            type="radio"
+                            id="projectVacatiom"
+                            name="project-vacation"
+                            value="fa-umbrella-beach" >
                         <i class="fa-solid fa-umbrella-beach"></i>
                     </label>
 
-                    <input type="radio" name="project-exercise" value="fa-dumbbell" id="projectExercise">
                     <label class="radio-label" for="project-exercise">
+                        <input 
+                            type="radio"
+                            id="projectExercise"
+                            name="project-exercise"
+                            value="fa-dumbbell" >
                         <i class="fa-solid fa-dumbbell"></i>
                     </label>
                 </div>
 
                 <div class="btn-container">
-                    <button type="submit" class="btn" id="addProjectBtn">Add</button>
-                    <button class="btn btn--naked" id="closeProjectModal">Cancel</button>
+                    <button type="submit" id="addProjectBtn" class="btn" >Add</button>
+                    <button id="closeProjectModal" class="btn btn--naked">Cancel</button>
                 </div>
             </form>
             
@@ -125,7 +156,7 @@
             <div class="tasks-modal__header">
                 <h2 class="title--sm">Add Task</h2>
             </div>
-            <form action="" class="tasks-form | flex flex-columns gap-md" id="newTaskForm">
+            <form id="newTaskForm" class="tasks-form | flex flex-columns gap-md">
                 <div class="form-input-group | flex flex-columns gap-sm">
                     <label for="task-title" class="form-label">Task</label>
                     <input type="text" class="form-input" name="task-title" id="taskTitle">
