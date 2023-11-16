@@ -14,18 +14,14 @@ const projects = (() => {
                         title: 'Project Proposal',
                         description: 'Prepare project proposal for client',
                         date: '2023-11-15',
-                        priority: 'Medium',
-                        projectIndex: 0,
-                        todoIndex: 0,
+                        important: true,
                         completed: false
                     },
                     {
                         title: 'Presentation Draft',
                         description: 'Create draft of client presentation to present new marketing campaign proposal',
                         date: '2023-11-21',
-                        priority: 'High',
-                        projectIndex: 0,
-                        todoIndex: 1,
+                        important: false,
                         completed: false
                     }
                 ]
@@ -37,18 +33,14 @@ const projects = (() => {
                         title: 'Quarterly Reports',
                         description: 'Prepare quarterly reports for stakeholders',
                         date: '2023-11-18',
-                        priority: 'Medium',
-                        projectIndex: 1,
-                        todoIndex: 0,
+                        important: false,
                         completed: false
                     },
                     {
                         title: 'Projected Future Earnings',
                         description: 'Presentation of projected revenues and earnings for upcoming quarter.',
                         date: '2023-11-22',
-                        priority: 'Low',
-                        projectIndex: 1,
-                        todoIndex: 1,
+                        important: false,
                         completed: false
                     }
                 ]
@@ -90,8 +82,8 @@ const projects = (() => {
     // DELETE PROJECTS FROM ARRAY
     function deleteProject(index) {
         projectsArray.splice(index, 1);
-        // addToStorage();
-        dom.renderProjects();
+        addToStorage();
+        dom.renderProjectsPage();
     }
 
     function activeProject(){

@@ -58,15 +58,15 @@ const todos =(() => {
         const todo = new Todo(title, description, date, priority);
     
         // Add todo to array
-        projects.projectsArray[projectIndex].push(todo);
+        // projects.projectsArray.push(todo);
 
-        console.log(projects.projectsArray);
+        // console.log(projects.projectsArray);
     
         // Add todo to local storage
         addToStorage();
 
         //Render todos to DOM
-        dom.renderTodos();
+        // dom.renderTodos();
     };
 
     // DELETE TODOS FROM ARRAY
