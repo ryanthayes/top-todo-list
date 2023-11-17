@@ -139,7 +139,7 @@ h3 {
 /* === SIDEBAR === */
 
 .sidebar-nav {
-    height: calc(100vh - 65px);
+    height: calc(100svh - 65px);
     background-color: var(--clr-neutral-200);
     transition: .03s;
 }

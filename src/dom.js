@@ -16,6 +16,25 @@ const dom = (() => {
         todoContainer.innerText = '';
     };
 
+      // RENDER PROJECTS IN SIDEBAR
+      function renderSidebar() {
+        
+        sidebarProjects.innerText = '';
+
+        projects.projectsArray.forEach((project, index) => {
+
+            // Create list item for each project
+            const projectItems = createHtmlElement('li', null, ['sidebar-project-items', '|', 'no-bullets', 'flex', 'gap-sm', 'align-items-center'], 'data-index', index, null, sidebarProjects);
+
+            const projectTitle = createHtmlElement('p', null, ['header-project-title'], null, null, project.title, projectItems);
+
+            // EVENT: Render project to page
+            projectItems.addEventListener('click', () => {
+                renderCurrentProject(project, index);
+            })
+        });
+    }; 
+
     // RENDER INBOX TODOs
     function renderInbox() {
         
@@ -56,18 +75,18 @@ const dom = (() => {
         addTodoBtn.addEventListener('click', () => todoModal.showModal());
 
         renderTodos();
-    }
+    };
 
     // RENDER THIS WEEK TODOs
-    function renderWeek() {
+    function renderUpcoming() {
         
         clearMainContainer();
         
-        mainContainer.setAttribute('data-index', 'week');
+        mainContainer.setAttribute('data-index', 'upcoming');
 
         const todoHeaderContainer = createHtmlElement('div', null, ['todo-header-container'], null, null, null, mainContainer);
 
-        const todoHeaderTitle = createHtmlElement('h2', null, ['todo-header__title', '|', 'title--sm', 'flex', 'justify-content-between'], null, null, 'This Week', todoHeaderContainer);
+        const todoHeaderTitle = createHtmlElement('h2', null, ['todo-header__title', '|', 'title--sm', 'flex', 'justify-content-between'], null, null, 'Upcoming', todoHeaderContainer);
 
         const todoHeaderBtns = createHtmlElement('div', null, ['todo-header__btn-container', 'flex', 'gap-sm', 'align-items-center'], null, null, null, todoHeaderContainer);
 
@@ -77,7 +96,7 @@ const dom = (() => {
         addTodoBtn.addEventListener('click', () => todoModal.showModal());
 
         renderTodos();
-    }
+    };
 
     // RENDER IMPORTANT TODOs
     function renderImportant() {
@@ -98,26 +117,7 @@ const dom = (() => {
         addTodoBtn.addEventListener('click', () => todoModal.showModal());
 
         renderTodos();
-    }
-
-    // RENDER PROJECTS IN SIDEBAR
-    function renderSidebar() {
-        
-        sidebarProjects.innerText = '';
-
-        projects.projectsArray.forEach((project, index) => {
-
-            // Create list item for each project
-            const projectItems = createHtmlElement('li', null, ['sidebar-project-items', '|', 'no-bullets', 'flex', 'gap-sm', 'align-items-center'], 'data-index', index, null, sidebarProjects);
-
-            const projectTitle = createHtmlElement('p', null, ['header-project-title'], null, null, project.title, projectItems);
-
-            // EVENT: Render project to page
-            projectItems.addEventListener('click', () => {
-                renderCurrentProject(project, index);
-            })
-        });
-    };   
+    };
 
     // RENDER CURRENT PROJECT TO PAGE
     function renderCurrentProject(project, index) {
@@ -145,20 +145,19 @@ const dom = (() => {
         // EVENT: Delete project
         projDeleteBtn.addEventListener('click', () => projects.deleteProject())
 
-        // Create container for todos
-        const todoContainer = createHtmlElement('div', 'todoContainer', ['todo-container'], null, null, null, mainContainer)
-
         renderTodos();
     };
 
     function renderTodos() {
-        projects.projectsArray.forEach((project) => {
-            project.todos.forEach((todos, index) => {
+        
+        const currentProject = document.querySelector('.main-container').getAttribute('data-index');
+        const todoContainer = createHtmlElement('div', 'todoContainer', ['todo-container'], null, null, null, mainContainer);
 
-                const todoContainer = createHtmlElement('div', 'todoContainer', ['todo-container'], null, null, null, mainContainer)
+        projects.projectsArray.forEach((project) => {
+            projects.projectsArray[currentProject].todos.forEach((todos, index) => {
 
                 const todoItems = createHtmlElement('li', null, ['todo-item'], 'data-index', index, null, todoContainer);
-                
+ 
                 const todoTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems)
 
                 const todoTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', todos.title, todoTitleContainer);
@@ -176,43 +175,11 @@ const dom = (() => {
                 const todoEditBtn = createHtmlElement('i', null, ['btn--edit', 'btn--dark', '|', 'fas', 'fa-edit'], 'data-action', 'edit', null, todoBtnContainer);
 
                 const todoDeleteBtn = createHtmlElement('i', null, ['btn--delete', 'btn--dark', '|', 'fa-solid', 'fa-trash'], 'data-action', 'delete', null, todoBtnContainer);
-                todoDeleteBtn.addEventListener('click', () => deleteTodo())
-            });
-        })       
+                todoDeleteBtn.addEventListener('click', () => deleteTodo());
+            })
+        });
     };
 
-    // function renderTodos() {
-
-    //     const currentProject = document.querySelector('#mainContainer').getAttribute('data-index');
-    //     const todoContainer = document.querySelector('#todoContainer'); 
-
-    //     const filteredTodos = projects.projectsArray.filter((currentProject) => {
-    //         currentProject.todos.filter((todos, index) => {
-
-    //             const todoItems = createHtmlElement('li', null, ['todo-item'], 'data-index', index, null, todoContainer);
-                
-    //             const todoTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems)
-
-    //             const todoTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', todos.title, todoTitleContainer);
-
-    //             const todoInfoContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems);
-
-    //             const todoDate = createHtmlElement('p', null, ['todo-item__date'], null, null, todos.date, todoInfoContainer);
-
-    //             // const todoPriority = createHtmlElement('p', null, ['todo-item__priority'], null, null, todos.priority, todoInfoContainer);
-
-    //             const todoBtnContainer = createHtmlElement('div', null, ['todo-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, todoInfoContainer)
-
-    //             const todoEditBtn = createHtmlElement('i', null, ['btn--edit', 'btn--dark', '|', 'fas', 'fa-edit'], 'data-action', 'edit', null, todoBtnContainer);
-
-    //             const todoDeleteBtn = createHtmlElement('i', null, ['btn--delete', 'btn--dark', '|', 'fa-solid', 'fa-trash'], 'data-action', 'delete', null, todoBtnContainer);
-    //             todoDeleteBtn.addEventListener('click', () => deleteTodo())
-
-    //             const todoDetailsBtn = createHtmlElement('i', null, ['btn--info', 'btn--dark', '|', 'fa', 'fa-info-circle'], 'data-action', 'details', null, todoBtnContainer);
-    //         })
-    //     })  
-    // };
-    
     // SET ACTIVE STATE ON SIDEBAR NAV ITEMS
     function setActive() {
         
@@ -243,7 +210,7 @@ const dom = (() => {
     return {
         renderInbox,
         renderToday,
-        renderWeek,
+        renderUpcoming,
         renderImportant,
         renderSidebar,
         renderCurrentProject,

@@ -76,14 +76,14 @@ const projects = (() => {
         addToStorage();
 
         //Render Projects to DOM
-        dom.renderProjects();
+        dom.renderSidebar();
     };
 
     // DELETE PROJECTS FROM ARRAY
     function deleteProject(index) {
         projectsArray.splice(index, 1);
         addToStorage();
-        dom.renderProjectsPage();
+        dom.renderSidebar();
     }
 
     function activeProject(){

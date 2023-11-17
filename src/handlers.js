@@ -52,8 +52,8 @@ const handlers = (() => {
                     case 'navToday':
                         dom.renderToday();
                         break
-                    case 'navWeek':
-                        dom.renderWeek();
+                    case 'navUpcoming':
+                        dom.renderUpcoming();
                         break
                     case 'navImportant':
                         dom.renderImportant();
