@@ -59,7 +59,7 @@ const projects = (() => {
     };
     
     function addToStorage() { 
-        localStorage.setItem("project", JSON.stringify(projects));
+        localStorage.setItem('projects', JSON.stringify(projects));
     };
     
     function newProject() {
@@ -79,23 +79,31 @@ const projects = (() => {
         dom.renderSidebar();
     };
 
-    // DELETE PROJECTS FROM ARRAY
+    // DELETE PROJECT
     function deleteProject(index) {
-        projectsArray.splice(index, 1);
-        addToStorage();
-        dom.renderSidebar();
+        console.log('delete project');
+        
+        // projectsArray.splice(index, 1);
+        // addToStorage();
+        // dom.renderSidebar();
+    };
+
+    // EDIT PROJECT
+    function editProject() {
+        console.log('edit project');
     }
 
     function activeProject(){
         let activeProjectArray = projectsArray.filter(project => project.active);
         return activeProjectArray[0];
-    }
+    };
     
-
     return {
         projectsArray,
         newProject, 
-        deleteProject
+        deleteProject,
+        editProject,
+        activeProject
     };
 
 })();

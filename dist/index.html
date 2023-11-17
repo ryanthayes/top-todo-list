@@ -79,7 +79,7 @@
                 </div>
                 <form id="addProjectForm" class="project-form | flex flex-columns gap-md">
                     <div class="form-input-group | flex flex-columns gap-sm">
-                        <label for="project-title" class="form-label">Project Name*</label>
+                        <label for="projectTitle" class="form-label">Project Name*</label>
                         <input 
                             type="text" 
                             id="projectTitle" 
@@ -90,7 +90,7 @@
 
                     <div class="project-types">
                     
-                        <label class="radio-label" for="project-general">
+                        <label class="radio-label" for="projectGeneral">
                             <input
                                 type="radio"
                                 id="projectGeneral"
@@ -99,7 +99,7 @@
                             <i class="fa-solid fa-list-check"></i>
                         </label>
 
-                        <label class="radio-label" for="project-work">
+                        <label class="radio-label" for="projectWork">
                             <input 
                                 type="radio"
                                 id="projectWork"
@@ -108,7 +108,7 @@
                             <i class="fa-solid fa-laptop"></i>
                         </label>
 
-                        <label class="radio-label" for="project-home">
+                        <label class="radio-label" for="projectSchool">
                             <input 
                                 type="radio"
                                 id="projectSchool"
@@ -117,7 +117,7 @@
                             <i class="fa-solid fa-graduation-cap"></i>
                         </label>
 
-                        <label class="radio-label" for="project-home">
+                        <label class="radio-label" for="projectHome">
                             <input 
                                 type="radio"
                                 id="projectHome"
@@ -127,16 +127,16 @@
                             
                         </label>
 
-                        <label class="radio-label" for="project-vacation">
+                        <label class="radio-label" for="projectVacation">
                             <input 
                                 type="radio"
-                                id="projectVacatiom"
+                                id="projectVacation"
                                 name="project-vacation"
                                 value="fa-umbrella-beach" >
                             <i class="fa-solid fa-umbrella-beach"></i>
                         </label>
 
-                        <label class="radio-label" for="project-exercise">
+                        <label class="radio-label" for="projectExercise">
                             <input 
                                 type="radio"
                                 id="projectExercise"
@@ -161,24 +161,20 @@
                 </div>
                 <form id="addTodoForm" class="todo-form | flex flex-columns gap-md">
                     <div class="form-input-group | flex flex-columns gap-sm">
-                        <label for="todo-title" class="form-label">Todo</label>
-                        <input type="text" class="form-input" name="todo-title" id="todoTitle">
+                        <label for="todoTitle" class="form-label">Todo</label>
+                        <input id="todoTitle" type="text" class="form-input" name="todo-title">
                     </div>
                     <div class="form-input-group | flex flex-columns gap-sm">
-                        <label for="todo-description" class="form-label">Description</label>
-                        <input type="text" class="form-input" name="todo-description" id="todoDescription">
+                        <label for="todoDescription" class="form-label">Description</label>
+                        <input id="todoDescription" type="text" class="form-input" name="todo-description">
                     </div>
                     <div class="form-input-group | flex flex-columns gap-sm">
-                        <label for="todo-date" class="form-label">Due Date</label>
-                        <input type="date" class="form-input" name="todo-date" id="todoDate">
+                        <label for="todoDate" class="form-label">Due Date</label>
+                        <input id="todoDate" type="date" class="form-input" name="todo-date">
                     </div>
-                    <div class="form-input-group | flex flex-columns gap-sm">
-                        <label for="todo-priority" class="form-label">Priority</label>
-                        <select class="form-input" name="todo-priority" id="todoPriority">
-                            <option value="high">High</option>
-                            <option value="medium">Medium</option>
-                            <option value="low">Low</option>
-                        </select>          
+                    <div class="form-input-group | flex gap-sm">
+                        <label for="todoPriority" class="form-label">Important</label>
+                        <input id="todoPriority" type="checkbox" class="form-input" name="todo-priority" >         
                     </div>
                     <div class="btn-container">
                         <button type="submit" class="btn" id="newTodoSubmit">Add</button>

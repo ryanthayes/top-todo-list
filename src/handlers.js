@@ -12,9 +12,7 @@ const handlers = (() => {
         const closeProjectModal = document.querySelector('#closeProjectModal');
         const projectModal = document.querySelector('#projectModal');
 
-        openProjectModal.addEventListener('click', () => {
-            projectModal.showModal();
-        });
+        openProjectModal.addEventListener('click', () => projectModal.showModal());
 
         // EVENT: On form submit, create project
         addProjectBtn.addEventListener('click', (e) =>{
@@ -22,7 +20,6 @@ const handlers = (() => {
             projects.newProject();
             addProjectForm.reset();
             projectModal.close();
-
         });
 
         // EVENT: Open New todo Modal
@@ -32,9 +29,14 @@ const handlers = (() => {
         // EVENT: On form submit, create todo
         const addTodoForm = document.querySelector('#addTodoForm');
         addTodoForm.addEventListener('submit', (e) =>{
+            const projectIndex = document.querySelector('.main-container').getAttribute('data-index');
+            const title = document.querySelector('#todoTitle').value;
+            const description = document.querySelector('#todoDescription').value;
+            const date = document.querySelector('#todoDate').value;
+            const priority = document.querySelector('#todoPriority').value;
+            
             (e).preventDefault();
-
-            todos.newTodo();
+            todos.newTodo(projectIndex, title, description, date, priority);
             addTodoForm.reset();
             todoModal.close();
         }); 
