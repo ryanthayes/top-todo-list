@@ -190,11 +190,11 @@ h3 {
     align-items: center;
 }
 
-/* @media (max-width: 35em) {
-    .header {
+@media (max-width: 35em) {
+    .sidebar-nav {
         transform: translateX(-300px);
     }
-} */
+}
 
 /* === MAIN SECTION === */
 .main {
@@ -243,14 +243,22 @@ h3 {
     border-radius: var(--br-lg);
 }
 
+.display-message {
+    padding: var(--spacing-md);
+    font-size: var(--fs-500);
+    font-weight: var(--fw-semibold);
+    color: var(--clr-primary-700);
+    text-align: center;
+}
+
 /* Check Mark Toggle */
 
 
-/* @media (max-width: 35em) {
+@media (max-width: 35em) {
     .main {
-        transform: translateX(-250px);
+        transform: translateX(-300px);
     }
-} */
+}
 
 /* === MODALS === */
 

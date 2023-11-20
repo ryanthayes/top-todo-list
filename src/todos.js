@@ -42,12 +42,6 @@ const todos =(() => {
     function deleteTodo() {
         console.log('delete todo');
     };
-    
-    // function deleteTodo(index) {
-    //     projects.projectsArray[index].todos.splice(index, 1);
-    //     addToStorage();
-    //     dom.renderTodos();
-    // };
 
     return {
         newTodo,

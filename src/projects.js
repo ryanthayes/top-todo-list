@@ -9,7 +9,7 @@ const projects = (() => {
                 {
                     title: 'Project Proposal',
                     description: 'Prepare project proposal for client',
-                    date: '2023-11-15',
+                    date: '2023-11-20',
                     important: true,
                     completed: false
                 },
