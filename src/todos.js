@@ -35,7 +35,7 @@ const todos =(() => {
 
     // EDIT TODO
     function editTodo() {
-        console.log('edit project');
+        console.log('edit todo');
     }
     
     // DELETE TODO

@@ -59,18 +59,18 @@ const dom = (() => {
         const todoContainer = createHtmlElement('div', 'todoContainer', ['todo-container'], null, null, null, mainContainer);
 
         projects.projectsArray.forEach((project) => {
-            project.todos.forEach((todos, index) => {
+            project.todos.forEach((todo, index) => {
                 const todoItems = createHtmlElement('li', null, ['todo-item'], 'data-index', index, null, todoContainer);
 
                 const todoTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems)
     
-                const todoTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', todos.title, todoTitleContainer);
+                const todoTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', todo.title, todoTitleContainer);
     
                 const todoInfoContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems);
     
-                const todoDate = createHtmlElement('p', null, ['todo-item__date'], null, null, todos.date, todoInfoContainer);
+                const todoDate = createHtmlElement('p', null, ['todo-item__date'], null, null, todo.date, todoInfoContainer);
     
-                const todoPriority = createHtmlElement('p', null, ['todo-item__priority'], null, null, todos.priority, todoInfoContainer);
+                const todoPriority = createHtmlElement('p', null, ['todo-item__priority'], null, null, todo.priority, todoInfoContainer);
 
                 const todoBtnContainer = createHtmlElement('div', null, ['todo-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, todoInfoContainer)
 
@@ -185,19 +185,19 @@ const dom = (() => {
 
         clearTodoContainer();
 
-        projects.projectsArray[currentProject].todos.forEach((todos, index) => {
+        projects.projectsArray[currentProject].todos.forEach((todo, index) => {
 
             const todoItems = createHtmlElement('li', null, ['todo-item'], 'data-index', index, null, todoContainer);
 
             const todoTitleContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems)
 
-            const todoTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', todos.title, todoTitleContainer);
+            const todoTitle = createHtmlElement('h3', null, ['todo-item__title'], 'data-action', 'check', todo.title, todoTitleContainer);
 
             const todoInfoContainer = createHtmlElement('div', null, ['flex', 'gap-sm', 'align-items-center'], null, null, null, todoItems);
 
-            const todoDate = createHtmlElement('p', null, ['todo-item__date'], null, null, todos.date, todoInfoContainer);
+            const todoDate = createHtmlElement('p', null, ['todo-item__date'], null, null, todo.date, todoInfoContainer);
 
-            const todoPriority = createHtmlElement('p', null, ['todo-item__priority'], null, null, todos.priority, todoInfoContainer);
+            const todoPriority = createHtmlElement('p', null, ['todo-item__priority'], null, null, todo.priority, todoInfoContainer);
 
             const todoBtnContainer = createHtmlElement('div', null, ['todo-item__btn-container', '|', 'flex', 'gap-sm', 'align-items-center'], null, null, null, todoInfoContainer)
 
