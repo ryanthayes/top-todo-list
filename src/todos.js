@@ -39,8 +39,9 @@ const todos =(() => {
     }
     
     // DELETE TODO
-    function deleteTodo() {
-        console.log('delete todo');
+    function deleteTodo(index) {
+        projects.projectsArray[index].todos.splice(index, 1);
+        dom.renderTodos();
     };
 
     return {

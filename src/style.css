@@ -150,24 +150,25 @@ h3 {
 }
 
 .sidebar-nav-link,
-.sidebar-project-link {
+.sidebar-project {
     cursor: pointer;
     display: flex;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     padding: var(--spacing-xs);
 }
 
-.sidebar-project-link {
+.sidebar-project {
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
 .sidebar-nav-link-active,
 .sidebar-nav-link:hover,
 .sidebar-nav-link:focus,
-.sidebar-project-link-active,
-.sidebar-project-link:hover,
-.sidebar-project-link:focus {
+.sidebar-project-active,
+.sidebar-project:hover,
+.sidebar-project:focus {
     background-color: var(--clr-primary-100);
     border-radius: var(--br-sm);
 }

@@ -24,11 +24,11 @@ const dom = (() => {
         projects.projectsArray.forEach((project, index) => {
 
             // Create list item for each project
-            const projectLink = createHtmlElement('li', null, ['sidebar-project-link', '|', 'no-bullets'], 'data-index', index, null, sidebarProjects);
+            const sidebarProject = createHtmlElement('li', null, ['sidebar-project', '|', 'no-bullets'], 'data-index', index, null, sidebarProjects);
 
-            const projectTitle = createHtmlElement('p', null, ['sidebar-project-title'], null, null, project.title, projectLink);
+            const projectTitle = createHtmlElement('a', null, ['sidebar-project-link'], null, null, project.title, sidebarProject);
 
-            const projectBtns = createHtmlElement('div', null, ['sidebar-button-container', '|', 'flex', 'gap-sm'], null, null, null,  projectLink)
+            const projectBtns = createHtmlElement('div', null, ['sidebar-project-buttons', '|', 'flex', 'gap-sm'], null, null, null,  sidebarProject)
 
             // Create edit button for project
             const projectEditBtn = createHtmlElement('i', null, ['btn--edit', 'btn--dark', '|', 'fas', 'fa-edit'], 'data-action', 'edit', null, projectBtns);
@@ -38,10 +38,10 @@ const dom = (() => {
             // Create delete button for project
             const projectDeleteBtn = createHtmlElement('i', null, ['btn--delete', 'btn--dark', '|', 'fa-solid', 'fa-trash'], 'data-action', 'delete', null, projectBtns);
 
-            projectDeleteBtn.addEventListener('click', () => projects.deleteProject());
+            projectDeleteBtn.addEventListener('click', () => projects.deleteProject(index));
 
             // EVENT: Render project to page
-            projectLink.addEventListener('click', () => renderCurrentProject(project, index));
+            projectTitle.addEventListener('click', () => renderCurrentProject(project, index));
         })
     }; 
 
@@ -77,6 +77,10 @@ const dom = (() => {
                 const todoDetailsBtn = createHtmlElement('i', null, ['btn--info', 'btn--dark', '|', 'fa', 'fa-info-circle'], 'data-action', 'details', null, todoBtnContainer);
 
                 todoDetailsBtn.addEventListener('click', () => console.log('todo details'));
+
+                const todoDeleteBtn = createHtmlElement('i', null, ['btn--delete', 'btn--dark', '|', 'fa-solid', 'fa-trash'], 'data-action', 'delete', null, todoBtnContainer);
+            
+                todoDeleteBtn.addEventListener('click', () => todos.deleteTodo(index));
             })
 
         })
@@ -207,7 +211,7 @@ const dom = (() => {
 
             const todoDeleteBtn = createHtmlElement('i', null, ['btn--delete', 'btn--dark', '|', 'fa-solid', 'fa-trash'], 'data-action', 'delete', null, todoBtnContainer);
             
-            todoDeleteBtn.addEventListener('click', () => todos.deleteTodo());
+            todoDeleteBtn.addEventListener('click', () => todos.deleteTodo(index));
         });
 
     };
