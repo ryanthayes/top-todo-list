@@ -27,7 +27,7 @@ const todos =(() => {
         projects.projectsArray[projectIndex].todos.push(todo);
     
         // Add todo to local storage
-        addToStorage();
+        // addToStorage();
 
         //Render todos to DOM
         dom.renderTodos();
